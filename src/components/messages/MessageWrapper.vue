@@ -57,7 +57,7 @@ export default {
           });
 
           if (this.$store.state.visible == false && localStorage.getItem("notificationStatus") == "true") {
-            browser.runtime.sendMessage(browser.runtime.id(), {
+            chrome.runtime.sendMessage(thisAppID, {
               type: "displayNotification",
               options: {
                 title: "Notification from Hand signals",
@@ -79,7 +79,7 @@ export default {
           });
 
           if (this.$store.state.visible == false && localStorage.getItem("notificationStatus") == "true") {
-            browser.runtime.sendMessage(browser.runtime.id(), {
+           chrome.runtime.sendMessage(thisAppID, {
               type: "displayNotification",
               options: {
                 title: "Notification from Hand signals",

@@ -45,7 +45,7 @@ export default {
       const store = this.$store;
       store.dispatch("setUpdateChecked", true);
 
-      browser.runtime.sendMessage(browser.runtime.id(), { reload: true }, function(response) {
+      chrome.runtime.sendMessage(thisAppID, { reload: true }, function(response) {
         store.dispatch("setUpdateStatus", response.updateAvailable);
       });
     },

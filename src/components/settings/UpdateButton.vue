@@ -45,7 +45,7 @@ export default {
       const store = this.$store;
       store.dispatch("setUpdateChecked", true);
 
-      chrome.runtime.sendMessage(this.$store.state.extensionID, { reload: true }, function(response) {
+      extensionApi.runtime.sendMessage(this.$store.state.extensionID, { reload: true }, function(response) {
         store.dispatch("setUpdateStatus", response.updateAvailable);
       });
     },

@@ -51,7 +51,7 @@ export default {
     turnOnNotifications() {
       var vm = this;
       vm.isHover = false;
-      chrome.runtime.sendMessage(this.$store.state.extensionID, { type: "notification" }, function(response) {
+      extensionApi.runtime.sendMessage(this.$store.state.extensionID, { type: "notification" }, function(response) {
         vm.notificationStatus = response.permissions;
         localStorage.setItem("notificationStatus", response.permissions);
       });

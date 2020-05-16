@@ -56,7 +56,7 @@ export default {
           });
 
           if (this.$store.state.visible == false && localStorage.getItem("notificationStatus") == "true") {
-            chrome.runtime.sendMessage(this.$store.state.extensionID, {
+            extensionApi.runtime.sendMessage(this.$store.state.extensionID, {
               type: "displayNotification",
               options: {
                 title: "Notification from Hand signals",
@@ -78,7 +78,7 @@ export default {
           });
 
           if (this.$store.state.visible == false && localStorage.getItem("notificationStatus") == "true") {
-            chrome.runtime.sendMessage(this.$store.state.extensionID, {
+            extensionApi.runtime.sendMessage(this.$store.state.extensionID, {
               type: "displayNotification",
               options: {
                 title: "Notification from Hand signals",

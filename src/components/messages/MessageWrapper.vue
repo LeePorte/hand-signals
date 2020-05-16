@@ -15,6 +15,7 @@ import Response from "./Respond";
 import { generateUUID, sendNotification } from "../../utils";
 
 export default {
+
   components: {
     Message,
     Hand,
@@ -56,7 +57,7 @@ export default {
           });
 
           if (this.$store.state.visible == false && localStorage.getItem("notificationStatus") == "true") {
-            chrome.runtime.sendMessage(this.$store.state.extensionID, {
+            browser.runtime.sendMessage(browser.runtime.id(), {
               type: "displayNotification",
               options: {
                 title: "Notification from Hand signals",
@@ -78,7 +79,7 @@ export default {
           });
 
           if (this.$store.state.visible == false && localStorage.getItem("notificationStatus") == "true") {
-            chrome.runtime.sendMessage(this.$store.state.extensionID, {
+            browser.runtime.sendMessage(browser.runtime.id(), {
               type: "displayNotification",
               options: {
                 title: "Notification from Hand signals",

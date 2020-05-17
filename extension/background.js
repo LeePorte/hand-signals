@@ -1,11 +1,11 @@
-chrome.runtime.onUpdateAvailable.addListener(function(details) {
+extensionApi.runtime.onUpdateAvailable.addListener(function(details) {
   console.log("updating to version " + details.version);
-  chrome.runtime.reload();
+  extensionApi.runtime.reload();
 });
 
-chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+extensionApi.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
   if (request.reload) {
-    chrome.runtime.requestUpdateCheck(function(status) {
+    extensionApi.runtime.requestUpdateCheck(function(status) {
       if (status == "update_available") {
         console.log("update pending...");
         sendResponse({ updateAvailable: true, throttled: false });
@@ -19,7 +19,7 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
     });
   }
   if (request.type === "notification") {
-    chrome.permissions.request(
+    extensionApi.permissions.request(
       {
         permissions: ["notifications"],
         origins: ["*://meet.google.com/**-**-**"],
@@ -36,6 +36,6 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
 
   if (request.type === "displayNotification") {
     console.log(request.options);
-    chrome.notifications.create("", request.options);
+    extensionApi.notifications.create("", request.options);
   }
 });

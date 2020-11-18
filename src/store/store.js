@@ -45,6 +45,12 @@ export default new Vuex.Store({
     removeRespond(state, id) {
       state.response = state.response.filter((respond) => respond.messageId !== id);
     },
+    addOrder(state, data) {
+      state.response.unshift(data);
+    },
+    removeOrder(state, id) {
+      state.response = state.response.filter((respond) => respond.messageId !== id);
+    },
     addUserData(state, data) {
       state.userData = data;
     },
@@ -95,6 +101,13 @@ export default new Vuex.Store({
       context.commit("removeRespond", id);
     },
 
+    addOrder(context, messageData) {
+      context.commit("addOrder", messageData);
+    },
+
+    removeOrder(context, id) {
+      context.commit("removeOrder", id);
+    },
     openDropdown(context, dropdown) {
       context.commit("openDropdown", dropdown);
     },

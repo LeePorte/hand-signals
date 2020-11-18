@@ -89,11 +89,39 @@ export default {
             });
           }
           break;
+
+        case "ORDERQUEUE":
+          this.$store.dispatch("addOrder", {
+            messageId: d.message.messageId,
+            username: d.message.username,
+            encoded: d.message.encoded,
+            img: d.message.img,
+            owner: false
+          });
+
+          if (this.$store.state.visible === false && localStorage.getItem("notificationStatus") === "true") {
+            chrome.runtime.sendMessage(this.$store.state.extensionID, {
+              type: "displayNotification",
+              options: {
+                title: "Notification from Hand signals",
+                message: d.message.username,
+                iconUrl: d.message.encoded,
+                type: "basic"
+              }
+            });
+          }
+          break;
+
         case "REMOVEHAND":
           this.$store.dispatch("removeHand", d.message.messageId);
           break;
+
         case "REMOVERESPONSE":
           this.$store.dispatch("removeRespond", d.message.messageId);
+          break;
+
+        case "REMOVEORDER":
+          this.$store.dispatch("removeOrder", d.message.messageId);
           break;
       }
     };

@@ -1,6 +1,6 @@
 <template>
-  <div class="dropdown-outer" @click="sendMessage(emoji)" @keyup.enter="sendMessage(emoji)" tabindex="0" :aria-label="label" role="button">
-    <div class="dropdown-item" tabindex="-1" :class="{ faded: !canPost }">
+  <div class="dropdown-outer" >
+    <div class="dropdown-item" tabindex="-1" :class="{ faded: !canPost }" @click="getAction(emoji)" @keyup.enter="getAction(emoji)" tabindex="0" :aria-label="label" role="button">
       <img class="emoji" :src="getEncoded" :alt="getLabel"/>
       <span class="tooltiptext">{{ getLabel }}</span>
     </div>
@@ -12,7 +12,7 @@ import { generateUUID } from "../../utils/index";
 
 let ORDER;
 
-let order;
+let Order;
 
 export default {
   props: {
@@ -27,6 +27,9 @@ export default {
     },
     getEncoded() {
           return `${this.encoded}`;
+    },
+    getAction() {
+      return `${this.action}`;
     },
     getLabel() {
           return `${this.label}`;
@@ -71,6 +74,15 @@ Order: {
     getOrder() {
       return ORDER;
     },
+    getAction() {
+      return `${this.action}`;
+    },
+    getEncoded() {
+      return `${this.encoded}`;
+    },
+    getLabel() {
+      return `${this.label}`;
+    },
     getUsername() {
       if (this.$store.state.isFullName) {
         return this.$store.getters.getUser("fullName");
@@ -114,7 +126,7 @@ Order: {
     }
   }
 },
-}
+};
 
 </script>
 
